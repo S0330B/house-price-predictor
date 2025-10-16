@@ -5,7 +5,7 @@ import numpy as np
 
 pipe = joblib.load('voting_regressor_model.joblib')
 st.title('House Price Predictor')
-area = st.number_input('Area in square feet',min_value=1)
+area = st.number_input('Area in square feet',min_value=100)
 bedrooms = st.number_input('Number of bedrooms',min_value=1)
 bathrooms = st.number_input('Number of bathrooms',min_value=1)
 stories = st.number_input('Number of stories',min_value=1)
