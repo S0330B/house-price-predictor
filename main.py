@@ -1,11 +1,9 @@
 import streamlit as st
-import pickle
+import joblib
 import pandas as pd
-import math
 import numpy as np
 
-with open('voting_regressor_model.pkl', 'rb') as f:
-    pipe = pickle.load(f)
+pipe = joblib.load('voting_regressor_model.joblib')
 st.title('House Price Predictor')
 area = st.number_input('Area in square feet',min_value=1)
 bedrooms = st.number_input('Number of bedrooms',min_value=1)
@@ -19,8 +17,8 @@ furnishingstatus = st.selectbox("What is the furnishing status?",["Furnished","S
 
 if st.button("Predict Price"):
     try:
-        bathrooms_per_area = bathrooms / area
-        bedrooms_per_area = bedrooms / area
+        bathrooms_per_area = bathrooms / area if area != 0 else 0
+        bedrooms_per_area = bedrooms / area if area !=0 else 0
         bath_bed_ratio = bathrooms / (bedrooms + 1)
         rooms_total = bedrooms + bathrooms + parking
 
